@@ -11,10 +11,10 @@ price. Each becomes one `Trade` (W10.4; contract v29):
   same row's next version, `cancelled` (the data suite's
   `a-trade-withdrawn`);
 - **its price** in US dollars, its basis `percent_of_par` (MSRB states a
-  municipal trade's dollar price per 100 of par), and beside it its yield
-  to maturity as Terrapin states it, semi-annual (`QuotedYield`, kind
-  `to_maturity`); the yield to call is left out, since a print does not
-  name the call date it is to;
+  municipal trade's dollar price per 100 of par); no yield beside it: the
+  lake asks a quoted yield's day count, which Terrapin does not state for
+  the yields it computes on a print (asked, ruling 871), and a yield to
+  call names no call date;
 - **its quantity** the face amount traded, exactly as stated;
 - **its characteristics** by meaning, in the platform's list
   (`meridian.helpers.debt.characteristics`, 685 and 900's R5): a customer
@@ -35,9 +35,7 @@ eligibility is left unstated, as MSRB does not say it.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date
 from typing import Any
-from zoneinfo import ZoneInfo
 
 import meridian
 from meridian.helpers import debt
@@ -45,8 +43,6 @@ from meridian.plugin.v1 import operations_pb2 as ops
 
 from . import read
 
-#: The day a municipal trade's business date is in: New York's.
-NEW_YORK = ZoneInfo("America/New_York")
 MUNI_TRADES = "muni_trades"
 #: How the source is named on what is kept as reported.
 SOURCE = "terrapin"
@@ -72,12 +68,6 @@ class Unread:
     isin: str
     trade_id: str
     why: str
-
-
-def trade_date(moment_ns: int) -> date:
-    from datetime import UTC, datetime
-
-    return datetime.fromtimestamp(moment_ns / 1e9, tz=UTC).astimezone(NEW_YORK).date()
 
 
 def convert(
@@ -122,13 +112,11 @@ def convert(
         unconverted.append(ops.AsReported(scheme=f"{SOURCE}:trade_type", code=trade_type[:128],
                                           text=trade_type[:256]))  # fmt: skip
     regular = not any(v for k, v in flags.items() if k != "is_alt_trading_system")
-    ytm = read.number(item.get("ytm_semi_annual"))
     meta = meridian.ObservationMeta(
         row_key=f"msrb:{isin}:{trade_id}"[:128],
         subjects=[meridian.SubjectRef(entity_id=subject)],
         source=ops.Source(dataset=dataset),
         valid_from_ns=at,
-        business_date=trade_date(at),
         source_times=[meridian.SourceTime(kind="event", at_ns=at)],
         raw=raw,
         unconverted=unconverted,
@@ -138,7 +126,6 @@ def convert(
         price=meridian.Money(price, currency_code="USD"),
         quantity=amount,
         basis="percent_of_par",
-        yield_=None if ytm is None else debt.quoted_yield(ytm, "to_maturity"),
         cancelled=item.get("is_cancelled") is True,
         attributes=meridian.TradeAttributes(
             consolidated=_ELIGIBLE if regular else None,

@@ -142,6 +142,7 @@ def datasets_read(lake: Lake) -> DatasetsRead:
 
     instance = lake.plugin.identity.instance_id if lake._role_plugin is not None else ""
     said = {**lake.status.unread, **lake.status.not_recorded}
+    said.update({f"{what}: {why}": 1 for what, why in lake.status.refused.items()})
     return DatasetsRead(
         served=data.served(DECLARATION.catalogue, instance, lake.wants,
                            f"{len(DECLARATION.catalogue)} datasets"),

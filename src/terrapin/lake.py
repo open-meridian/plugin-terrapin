@@ -34,7 +34,7 @@ it (W3.7), its CUSIP kept there and never sent (W3.25, ruling 976).
 from __future__ import annotations
 
 import logging
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
 from decimal import Decimal
@@ -56,6 +56,8 @@ log = logging.getLogger("terrapin")
 
 #: Its datasets' keys, as the catalogue declares them.
 KEYS = (CURVES_KEY, INFLATION_KEY, trades.MUNI_TRADES)
+#: Why a curve's or an index's rates wait.
+AWAITS = "its record awaits a person's acceptance at the Instruments page"
 #: How far back the hourly check reads.
 CURVE_DAYS = 5
 INFLATION_MONTHS = 13
@@ -78,6 +80,8 @@ class Status:
     unread: dict[str, int] = field(default_factory=dict)
     #: Points not recorded by what they are, each with its count.
     not_recorded: dict[str, int] = field(default_factory=dict)
+    #: What the lake refused at the last check, by what it was, and why.
+    refused: dict[str, str] = field(default_factory=dict)
 
     def said(self, what: str, table: str = "unread") -> None:
         held = self.unread if table == "unread" else self.not_recorded
@@ -86,6 +90,10 @@ class Status:
 
 def _day_ns(day: date) -> int:
     return int(datetime(day.year, day.month, day.day, tzinfo=UTC).timestamp()) * 1_000_000_000
+
+
+def _key(row: meridian.Trade) -> str:
+    return row.meta.row_key if row.meta is not None else ""
 
 
 def business_days(last: date, count: int) -> list[date]:
@@ -138,6 +146,11 @@ class Lake(data.Role):
         #: the securities they were read for: read again daily, or at once
         #: when the list changes.
         self.daily: tuple[date, tuple[str, ...]] | None = None
+        #: Each print recorded unasked, by its row key, and whether it was
+        #: cancelled when sent: the hourly check sends a print once, and again
+        #: only when Terrapin marks it cancelled, so a print read again is
+        #: never judged a duplicate at the edge.
+        self.printed: dict[str, bool] = {}
 
     def clock_ns(self) -> int:
         return int(self.now().timestamp() * 1e9)
@@ -193,7 +206,14 @@ class Lake(data.Role):
     ) -> str:
         """The deployment's record of one of Terrapin's own curves or indexes,
         named by its code under the source `terrapin`; empty, the miss
-        reported once a day, where it holds none."""
+        reported once a day, where it holds none.
+
+        A vendor's own curve is no record the platform curates, so the
+        deployment keeps it local, its class and type offered as the plugin
+        states them; a rate is recorded on it only once a person has accepted
+        them at the Instruments page (the lake takes a rate only on a
+        referential record). Until then it is read again at each check, said
+        on the Datasets page, and no rate is sent for it."""
         held = self.records.get(symbol)
         if held:
             return held
@@ -207,12 +227,31 @@ class Lake(data.Role):
             stated_description=description,
         )
         if found.found and found.instrument_id:
-            self.records[symbol] = str(found.instrument_id)
-            self.status.records[symbol] = str(found.instrument_id)
-            return str(found.instrument_id)
+            record = str(found.instrument_id)
+            if not await self.accepted(record):
+                self.status.records[symbol] = record
+                self.status.refused[symbol] = AWAITS
+                return ""
+            self.records[symbol] = record
+            self.status.records[symbol] = record
+            self.status.refused.pop(symbol, None)
+            return record
         self.status.records[symbol] = ops.MissReason.Name(found.miss_reason or 1)
         await self._missed(symbol, named, found.miss_reason, "referential")
         return ""
+
+    async def accepted(self, record: str) -> bool:
+        """Whether a person has accepted a local record as a referential one,
+        a rate curve or an index; a record the store does not answer for is
+        taken as it is."""
+        read = await self.resolve_instrument(instrument_id=record, as_of_ns=self.clock_ns())
+        if not read.found:
+            return True
+        return bool(
+            read.instrument.asset_class == ops.ASSET_CLASS_REFERENTIAL
+            and read.instrument.instrument_type
+            in (ops.INSTRUMENT_TYPE_RATE_CURVE, ops.INSTRUMENT_TYPE_INDEX)
+        )
 
     async def security(self, held: Terms) -> str:
         """The deployment's record of a security, resolved with what
@@ -385,12 +424,15 @@ class Lake(data.Role):
         for region in REGIONS:
             for day in business_days(today, CURVE_DAYS):
                 rows = await self.curve_rows(region, day)
-                await self.feeds[region.code].record(CURVES_KEY, rows)
+                await self.kept(
+                    f"the {region.name} par curve", self.feeds[region.code].record(CURVES_KEY, rows)
+                )
         if self.daily != (today, self.securities):
             start = today.replace(day=1) - timedelta(days=31 * (INFLATION_MONTHS - 1))
             for country in curves.INFLATION_COUNTRIES:
                 rows = await self.inflation_rows(country, start.replace(day=1), today)
-                await self.feeds[INFLATION_KEY].record(INFLATION_KEY, rows)
+                await self.kept(f"the {country} inflation index",
+                                self.feeds[INFLATION_KEY].record(INFLATION_KEY, rows))  # fmt: skip
             await self.terms()
             self.daily = (today, self.securities)
         for subject, (isin, muni) in sorted(self.held.items()):
@@ -398,9 +440,34 @@ class Lake(data.Role):
                 prints = await self.print_rows(
                     isin, subject, today - timedelta(days=PRINT_DAYS), today
                 )
-                await self.wants.record("trades", prints, trades.MUNI_TRADES)
+                fresh = [p for p in prints if self.printed.get(_key(p)) != p.cancelled]
+                recording = self.wants.record("trades", fresh, trades.MUNI_TRADES)
+                if await self.kept(f"{isin}'s prints", recording):
+                    self.printed.update({_key(p): p.cancelled for p in fresh})
         await self.kept_current(today)
         self.status.checked_at = self.now().isoformat(timespec="seconds")
+        counts = self.wants.counts
+        log.info(
+            "checked: %d recorded, %d restated, %d unchanged in all; %d refused this time",
+            counts.recorded, counts.restated, counts.unchanged, len(self.status.refused),
+        )  # fmt: skip
+
+    async def kept(self, what: str, recording: Awaitable[int]) -> bool:
+        """A recording made, or its refusal said and the check gone on: a
+        curve's or an index's record the deployment keeps local is used for
+        rates only once a person accepts its class and type at the
+        Instruments page, and until then the lake refuses its rows."""
+        try:
+            await recording
+        except meridian.MeridianError as refused:
+            said = str(refused)
+            if "is no referential record" in said:
+                said = AWAITS
+            self.status.refused[what] = said[:300]
+            log.info("%s not recorded: %s", what, said)
+            return False
+        self.status.refused.pop(what, None)
+        return True
 
     async def kept_current(self, today: date) -> None:
         """Each standing want of prints answered again with what is current;

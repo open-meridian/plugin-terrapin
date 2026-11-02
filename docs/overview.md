@@ -16,8 +16,8 @@ roles, `data` and `reference`.
   - each country's **inflation index** level by month (US, UK, Germany,
     France, Italy, Spain, Canada), as its statistics office publishes it;
   - **municipal bonds' prints** as MSRB disseminates them, for the bonds you
-    list and any a reader wants: the price per 100 of par, the face amount,
-    the yield to maturity, and MSRB's flags as the platform's trade
+    list and any a reader wants: the price per 100 of par, the face amount
+    and MSRB's flags as the platform's trade
     characteristics (customer or inter-dealer, ATS, when issued, list
     offering price or takedown, non-transaction compensation); a print
     Terrapin marks cancelled is recorded again as withdrawn.
@@ -45,6 +45,7 @@ roles, `data` and `reference`.
   until Terrapin states it.
 - **A print's dealer capacity and traded-flat flag**, which Terrapin's prints
   do not carry; no flag listed means none stated, never "a regular trade".
+  Nor a print's yield, whose day count Terrapin does not state.
 - **Official statements, municipal events, issuance statistics and cash
   flows**, which no kind of the lake holds yet.
 - **Mortgage pools, TBAs and CMOs**, which Terrapin does not cover: the

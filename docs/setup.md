@@ -41,6 +41,10 @@ On the deployment's **Data sources** page (deployment admins):
 
 Each curve and inflation index is one record of your deployment, named by
 Terrapin's code for it (`TERRAPIN_US_PAR`, `TERRAPIN_US_INFLATION`) and kept
-local. Each listed security is resolved by its FIGI where Terrapin states
+local: they are Terrapin's own, no record the platform curates. The plugin
+states each one's class (referential), type (a rate curve or an index),
+currency and description; **accept them at the Instruments page** before
+its rates are recorded. Until then the Datasets page says each waits, and
+the plugin reads it again every hour. Each listed security is resolved by its FIGI where Terrapin states
 one, else its ISIN and CUSIP, with Terrapin's description and currency. Its
 offered terms wait at the **Instruments** page for a person to accept.

@@ -91,8 +91,8 @@ def test_a_print_s_characteristics_and_what_is_kept_as_reported() -> None:
     assert ats.basis == ops.PRICE_BASIS_PERCENT_OF_PAR
     assert as_decimal(ats.price.amount) == Decimal("108.902") and ats.price.currency_code == "USD"
     assert as_decimal(ats.quantity) == Decimal("25000")
-    assert ats.meta.business_date == "2026-10-27"
-    assert getattr(ats, "yield").kind == ops.YIELD_KIND_TO_MATURITY
+    assert not ats.meta.business_date  # a trade is keyed by its valid time
+    assert not ats.HasField("yield")  # its day count is not stated
     wap = trades[f"msrb:{MUNI}:sC3d9Pq8RkuW2n4tYb7c5g"]
     schemes = [u.scheme for u in wap.meta.unconverted]
     assert schemes == ["terrapin:is_weighted_avg_price_trade", "terrapin:trade_type"]
@@ -150,3 +150,49 @@ def test_nothing_is_asked_without_a_key() -> None:
     work.use(work.source, LISTED, False)
     asyncio.run(work.check())
     assert not recorder.sent
+
+
+def test_a_refused_curve_is_said_and_the_check_goes_on() -> None:
+    import meridian
+
+    recorder = Recorder("terrapin")
+    holding(recorder)
+
+    def refuse(params: ops.RecordRatesParams) -> ops.RecordRatesResult:
+        raise meridian.MeridianError(
+            'RecordRates: rates[0].meta.subjects[0].entity_id "LCL-1" is no referential record'
+        )
+
+    recorder.answer("RecordRates", refuse)
+    work = lake(recorder)
+    asyncio.run(work.check())
+    assert "awaits a person's acceptance" in work.status.refused["the US par curve"]
+    assert recorder.on("RecordTrades") and recorder.on("OfferTemplateFields")
+
+
+def test_a_print_is_sent_once_unasked_and_again_when_cancelled() -> None:
+    recorder = Recorder("terrapin")
+    holding(recorder)
+    work = lake(recorder)
+    asyncio.run(work.check())
+    asyncio.run(work.check())
+    sent = [t for s in recorder.on("RecordTrades") for t in s.trades]
+    assert len(sent) == 4
+    key = next(k for k, cancelled in work.printed.items() if not cancelled)
+    work.printed[key] = True  # as if sent cancelled before: sent again
+    asyncio.run(work.check())
+    assert len([t for s in recorder.on("RecordTrades") for t in s.trades]) == 5
+
+
+def test_a_curve_waits_until_its_record_is_accepted() -> None:
+    recorder = Recorder("terrapin")
+    recorder.answer(
+        "ResolveInstrument",
+        lambda p: ops.ResolveInstrumentResult(
+            found=True, instrument=ops.InstrumentRecord(instrument_id=p.instrument_id)
+        ),
+    )
+    work = lake(recorder, securities=())
+    asyncio.run(work.check())
+    assert not recorder.on("RecordRates")
+    assert work.status.refused["TERRAPIN_US_PAR"].startswith("its record awaits")

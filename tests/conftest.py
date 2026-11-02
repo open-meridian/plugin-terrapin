@@ -112,11 +112,29 @@ def holding(
     template_id: str = BOND_TEMPLATE,
     person_set: tuple[str, ...] = (),
 ) -> None:
-    """The deployment's records as the store answers them: each resolve the
-    record `INS-suite-n`, read back naming its template, `person_set` the
-    fields a person set; the template read at its version."""
+    """The deployment's records as the store answers them: a curve's or an
+    index's, by Terrapin's code, `INS-ref-n`, read back as a person accepted
+    it (referential); a security's `INS-debt-n`, read back naming its
+    template, `person_set` the fields a person set; the template read at its
+    version."""
+    resolved: list[str] = []
+
+    def resolve(params: Any) -> ops.ResolveIdentifierResult:
+        own = any(i.scheme == "symbol" and i.source == "terrapin" for i in params.identifiers)
+        resolved.append("ref" if own else "debt")
+        made = f"INS-{resolved[-1]}-{len(resolved)}"
+        return ops.ResolveIdentifierResult(found=True, instrument_id=made)
 
     def record(params: Any) -> ops.ResolveInstrumentResult:
+        if params.instrument_id.startswith("INS-ref-"):
+            return ops.ResolveInstrumentResult(
+                found=True,
+                instrument=ops.InstrumentRecord(
+                    instrument_id=params.instrument_id,
+                    asset_class=ops.ASSET_CLASS_REFERENTIAL,
+                    instrument_type=ops.INSTRUMENT_TYPE_RATE_CURVE,
+                ),
+            )
         return ops.ResolveInstrumentResult(
             found=True,
             instrument=ops.InstrumentRecord(
@@ -134,6 +152,7 @@ def holding(
             ),
         )
 
+    recorder.answer("ResolveIdentifier", resolve)
     recorder.answer("ResolveInstrument", record)
     recorder.answer(
         "ReadTemplate", lambda p: ops.ReadTemplateResult(template=template(p.template_id))

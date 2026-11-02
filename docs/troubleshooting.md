@@ -14,6 +14,7 @@
 | What you see | What it means | What to do |
 |---|---|---|
 | A security with **no record**, ambiguous | Its identifiers meet two of your records | Merge them at the Instruments page |
+| A curve or an index **awaits a person's acceptance** | Its record is local and its class and type are only offered | Accept them at the Instruments page; its rates are recorded at the next hourly read |
 | **LEI not resolved yet** | The platform has not answered for the issuer's LEI, or its staff are reviewing it | Nothing: it is asked again at the next daily read |
 | **No LEI stated** | Terrapin states no LEI for the issuer, as for most municipal issuers | The issuer field is left for a person |
 | A **refusal** beside a security | Your deployment's instrument store refused part of the offer (a field of a group, say) | The rest of the offer was kept; the refusal names the field |

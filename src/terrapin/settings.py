@@ -33,6 +33,11 @@ SECURITIES = "securities"
 #: The table's one column: a security's ISIN or CUSIP.
 SECURITY_COLUMN = "security"
 SAMPLE_DATA = "sample_data"
+#: Every setting serves both roles (contract v15: on a plugin holding several
+#: roles each setting names those it serves): the key and the sample answers
+#: read Terrapin's curves, prints and terms alike, and the securities listed
+#: are the terms offered and the prints kept current.
+DATA_AND_REFERENCE = ("data", "reference")
 #: The most securities listed.
 MOST_SECURITIES = 500
 
@@ -48,6 +53,7 @@ class Declared:
             "The deployment's Terrapin API key, made in Terrapin's app (API keys). "
             "Without it the plugin asks Terrapin nothing."
         ),
+        roles=DATA_AND_REFERENCE,
     )
     securities: list = meridian.setting(  # type: ignore[type-arg]
         "Securities",
@@ -66,6 +72,7 @@ class Declared:
             )
         ],
         most_rows=MOST_SECURITIES,
+        roles=DATA_AND_REFERENCE,
     )
     sample_data: bool = meridian.sample_data(
         description=(
@@ -73,7 +80,8 @@ class Declared:
             "public documentation, instead of asking Terrapin: curves, inflation factors, "
             "terms and municipal prints to 30 October 2026. No key needed. Development "
             "deployments only."
-        )
+        ),
+        roles=DATA_AND_REFERENCE,
     )
 
 

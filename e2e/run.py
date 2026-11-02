@@ -18,14 +18,19 @@ made in the shape of Terrapin's public documentation.
    its LEI, its terms offered; the municipal bond a record, no LEI stated --
    and `read_datasets` the three datasets and the US curve's record; core's
    `dashboard__list_datasets` lists the three as the catalogue declares them.
-4. The lake holds the sample week's par curves (three regions, five days,
+4. The three curves' and three indexes' records -- kept local, since they
+   are Terrapin's own -- completed by the deployment admin through core's
+   `dashboard__complete_instruments` as the plugin stated them (referential,
+   a rate curve or an index, its currency), as a person does at the
+   Instruments page before their rates are recorded.
+5. The lake holds the sample week's par curves (three regions, five days,
    ten tenors but the US curve's 25-year on 29 October), 36 inflation index
-   levels and the municipal bond's four prints, one kept with what does not
-   convert, and no price.
-5. Licensed and entitled, the reader reads the US par curve of 30 October:
+   levels and the municipal bond's four prints, the three a customer took a
+   side of keeping that side as reported, and no price.
+6. Licensed and entitled, the reader reads the US par curve of 30 October:
    ten points in tenor order, the 10-year 4.109 per cent, a par yield,
    bond-equivalent.
-6. Declined: the corporate's record asked of the curves, which it is not.
+7. Declined: the corporate's record asked of the curves, which it is not.
 """
 
 import json
@@ -47,6 +52,16 @@ APPLE, MUNI = "US037833ER75", "US005824LP01"
 #: The harness platform's company record of Apple Inc., by its LEI.
 APPLE_COMPANY = "ENT-01JC28APPLEINC000000000001"
 DAY = "2026-10-30"
+#: Terrapin's own curves and indexes the sample states, by its code: each
+#: record's currency and type, as the plugin states them.
+CODES = {
+    "TERRAPIN_US_PAR": ("USD", "INSTRUMENT_TYPE_RATE_CURVE"),
+    "TERRAPIN_UK_PAR": ("GBP", "INSTRUMENT_TYPE_RATE_CURVE"),
+    "TERRAPIN_DE_PAR": ("EUR", "INSTRUMENT_TYPE_RATE_CURVE"),
+    "TERRAPIN_US_INFLATION": ("USD", "INSTRUMENT_TYPE_INDEX"),
+    "TERRAPIN_UK_INFLATION": ("GBP", "INSTRUMENT_TYPE_INDEX"),
+    "TERRAPIN_DE_INFLATION": ("EUR", "INSTRUMENT_TYPE_INDEX"),
+}
 
 
 class Failed(Exception):
@@ -165,31 +180,50 @@ def run():
          f"step 3, core lists {TRADES} as declared: {listed.get(TRADES)}")
     must(all(d in listed for d in DATASETS), f"step 3, core lists the three datasets: {list(listed)}")
 
-    # 4. The lake: the week's curves, the indexes and the prints; no price.
+    # 4. The curves' and indexes' records, kept local, completed by the
+    # deployment admin as the plugin stated them, and the plugin woken by a
+    # settings change, as a person's save wakes it.
+    listed = call("dashboard__list_instruments_to_complete")["records"]
+    own = {i["value"]: r for r in listed for i in r["identifiers"]
+           if i["source"] == "terrapin" and i["scheme"] == "symbol"}
+    must(sorted(own) == sorted(CODES), f"step 4, the curves' and indexes' records listed: {listed}")
+    done = runner("mcp", "call", "dashboard__complete_instruments", json.dumps({"completions": [
+        {"instrument_id": own[code]["instrument_id"], "against_version": own[code]["version"],
+         "values": [{"asset_class": "ASSET_CLASS_REFERENTIAL"}, {"currency": currency},
+                    {"instrument_type": kind}],
+         "source": "Terrapin's plugin, as it stated the record",
+         "note": "Terrapin's own curve or index, accepted as its plugin states it."}
+        for code, (currency, kind) in CODES.items()]}), check=False)
+    must('"outcome": "made"' in done.stdout,
+         f"step 4, the records completed: {(done.stdout + done.stderr)[-800:]}")
+    runner("settings", "sample_data=true", f"securities[0].security={MUNI}",
+           f"securities[1].security={APPLE}")
+
+    # 5. The lake: the week's curves, the indexes and the prints; no price.
     def rows(dataset, kind):
         return [line for line in store_lake().splitlines()
                 if line.startswith(f"row|{dataset}|{kind}|")]
 
     curves = until(120, lambda: (lambda r: r if len(r) == 149 else None)(rows(CURVES, "rate")),
-                   "step 4, the week's par curves were not recorded")
+                   "step 5, the week's par curves were not recorded")
     levels = rows(INFLATION, "rate")
     prints = rows(TRADES, "trade")
-    must(len(levels) == 36, f"step 4, 36 inflation index levels: {len(levels)}")
-    must(len(prints) == 4 and sum(1 for p in prints if not p.endswith("|")) == 1,
-         f"step 4, four prints, one with what does not convert: {prints}")
+    must(len(levels) == 36, f"step 5, 36 inflation index levels: {len(levels)}")
+    must(len(prints) == 4 and sum(1 for p in prints if p.endswith("|true")) == 3,
+         f"step 5, four prints, the three customer prints keeping their side as reported: {prints}")
     must(not any(line.startswith("row|") and "|price|" in line for line in store_lake().splitlines()),
-         "step 4, no price recorded (ruling 900's R7)")
+         "step 5, no price recorded (ruling 900's R7)")
     must(all(f"|{us_curve}|" in line or "|LCL-" in line or "|INS-" in line for line in curves),
-         "step 4, each point under a curve's record")
+         "step 5, each point under a curve's record")
 
-    # 5. Licensed and entitled: the US par curve of 30 October.
+    # 6. Licensed and entitled: the US par curve of 30 October.
     runner("licence", CURVES, "kept=true", "retention_days=0", "derived_use=false",
            "display=true", "personal_use=false", "note=Terrapin's terms, as the deployment's agreement says.")
     runner("entitle", "--instance", "reader", CURVES, "note=The e2e's reader reads them.")
     runner("grant", "--instance", "reader", "--level", "read")
     curve = until(90, lambda: (lambda r: r if len(r["rates"]) == 10 else None)(
         reader(f"/curve?subject={us_curve}&date={DAY}&dataset={CURVES}")),
-        "step 5, the US par curve of 30 October was not read")
+        "step 6, the US par curve of 30 October was not read")
     points = curve["rates"]
     ten = [r for r in points if r["tenor"] == "10Y"]
     must([r["tenor"] for r in points] == ["1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "15Y", "20Y", "25Y", "30Y"]
@@ -197,16 +231,16 @@ def run():
          and ten[0]["unit"] == "VALUE_UNIT_PERCENT" and ten[0]["subject"] == us_curve
          and ten[0]["convention"] == ["DAY_COUNT_ACT_ACT", "COMPOUNDING_COMPOUNDED", 2]
          and ten[0]["business_date"] == DAY and ten[0]["dataset"] == CURVES,
-         f"step 5, the curve in tenor order, the 10-year as Terrapin states it: {curve}")
+         f"step 6, the curve in tenor order, the 10-year as Terrapin states it: {curve}")
 
-    # 6. Declined: a bond is no curve.
+    # 7. Declined: a bond is no curve.
     until(90, lambda: (lambda r: [u["reason"] for u in r["unanswered"]]
                        == ["UNANSWERED_REASON_NOT_COVERED"])(
         reader(f"/curve?subject={bond}&date={DAY}&dataset={CURVES}")),
-        "step 6, the bond's curve was not declined not covered")
+        "step 7, the bond's curve was not declined not covered")
     lake = store_lake()
     must(f"want|{CURVES}|declined|{bond}|" in lake,
-         f"step 6, the lake holds the decline: {[l for l in lake.splitlines() if l.startswith('want|')]}")
+         f"step 7, the lake holds the decline: {[l for l in lake.splitlines() if l.startswith('want|')]}")
 
     print(f"e2e OK in {int(time.time() - started)}s on the plugin harness: no key said and nothing "
           f"recorded; sample data's two securities resolved, the corporate to the platform's "
