@@ -58,7 +58,26 @@ def _want(want_id: str, subject: str, day: str) -> Heard[ops.ObservationsWantedE
 
 
 def _lake(recorder: Recorder) -> Lake:
+    own: set[str] = set()
+
+    def resolve(params: ops.ResolveIdentifierParams) -> ops.ResolveIdentifierResult:
+        made = f"LCL-PREVIEW-{len(own) + 1}"
+        if any(i.source == "terrapin" for i in params.identifiers):
+            own.add(made)
+        else:
+            own.add("")
+            made = f"INS-PREVIEW-{len(own)}"
+        return ops.ResolveIdentifierResult(found=True, instrument_id=made)
+
     def record(params: ops.ResolveInstrumentParams) -> ops.ResolveInstrumentResult:
+        if params.instrument_id in own:
+            # A curve's or an index's record, as a person accepted it.
+            accepted = ops.InstrumentRecord(
+                instrument_id=params.instrument_id,
+                asset_class=ops.ASSET_CLASS_REFERENTIAL,
+                instrument_type=ops.INSTRUMENT_TYPE_RATE_CURVE,
+            )
+            return ops.ResolveInstrumentResult(found=True, instrument=accepted)
         return ops.ResolveInstrumentResult(
             found=params.instrument_id != NOT_HELD,
             instrument=ops.InstrumentRecord(
@@ -74,6 +93,7 @@ def _lake(recorder: Recorder) -> Lake:
             "maturity_date", "calls", "issuer_company_id", "issuer_type", "municipal",
         )],
     )  # fmt: skip
+    recorder.answer("ResolveIdentifier", resolve)
     recorder.answer("ResolveInstrument", record)
     recorder.answer("ReadTemplate", lambda _: ops.ReadTemplateResult(template=template))
     reference = recorder.bind(Reference())
