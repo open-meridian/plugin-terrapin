@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "terrapin"
+version = "0.1.0"
+description = "Terrapin's government curves, inflation indexes, municipal prints and bond terms, into an Open Meridian deployment's lake and instrument store"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+# The SDK and nothing else, pinned exactly: the sidecar this runs beside
+# speaks one version of the contract (v29), and a range would let a rebuild
+# pick up another. The Dockerfile's base is the same version. Terrapin's API
+# is asked with the standard library: no third-party dependency.
+dependencies = [
+  "open-meridian==0.35.3",
+]
+
+[project.urls]
+Repository = "https://github.com/open-meridian/plugin-terrapin"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.24",
+  "mypy>=1.11",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+terrapin = "terrapin.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# The pages' templates and the sample answers, installed beside the code
+# that reads them.
+[tool.setuptools.package-data]
+terrapin = ["templates/*.html", "sample/*.json"]
+
+# What this plugin says about itself, which `meridian plugin upload` sends and
+# a deployment admin approves before it runs (W8). Declarations, not grants.
+[tool.meridian]
+# Roles from the deployment's fixed list, fifteen -- compliance, confirmation, connectivity,
+# custody, data, ems, oms, operations, portfolio, pricing, reference, reporting, servicing,
+# settlement, signal -- and its grants are theirs. `data`: Terrapin's curves,
+# inflation indexes and municipal prints into the lake (W10). `reference`:
+# the terms of the bonds and CDs a deployment lists, offered to its records'
+# templates (W3.23).
+roles = ["data", "reference"]
+# Whether it serves a page through its sidecar.
+interface = true
+# Its declaration: its settings, the catalogue of datasets it serves the lake,
+# its pages and tools, and its documentation in docs/. Upload reads it from
+# the built image with `meridian-declaration`.
+declaration = "terrapin.declaration:DECLARATION"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["terrapin"]
+known-local-folder = ["conftest"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src", "tests"]
+
+# The SDK's gRPC stubs have no types (meridian-python's own configuration
+# says the same).
+[[tool.mypy.overrides]]
+module = [
+    "meridian.v1.sidecar_pb2_grpc",
+    "meridian.v1.envelope_pb2_grpc",
+    "meridian.plugin.v1.operations_pb2_grpc",
+]
+follow_imports = "skip"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

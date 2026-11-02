@@ -1,0 +1,9 @@
+meridian-terrapin
+Copyright 2026 Societal Lab Inc.
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+This plugin reads Terrapin Finance Ltd's API with a key its user holds. It
+contains no data of Terrapin's: its sample answers are made up in the shape
+of Terrapin's public API documentation. This project is not affiliated with
+or endorsed by Terrapin Finance Ltd.

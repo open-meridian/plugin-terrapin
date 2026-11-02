@@ -1,0 +1,15 @@
+{#- Connection, at admin: the data role's (meridian/roles/data/connection.html),
+    with Terrapin's nuance at its blocks only -- "Securities" as a row of
+    "Key": how many are listed and resolved, its detail each security's
+    record, its issuer's company record and the terms offered; and
+    "Prices", not recorded, and why. No value:
+    rates and prints are the reading roles'. -#}
+{% extends "meridian/roles/data/connection.html" %}
+{% block vendor_rows %}{% if section == "Key" %}
+{% set resolved = data.securities|selectattr("record")|list|length %}
+<tr data-securities="{{ data.securities|length }}"><th scope="row">Securities</th><td>{{ resolved }} of {{ data.securities|length }} resolved</td><td class="more"><details class="row-detail" name="facts"><summary aria-label="Details of Securities">…</summary><div class="row-detail-pop"><h3>Securities</h3><dl>
+{% for s in data.securities %}<dt><code>{{ s.security }}</code></dt><dd>{{ s.description or "No terms read" }}; record {{ s.record or s.miss or "none yet" }}; issuer {{ s.issuer or "not stated" }}; {{ s.offered }} terms offered{% if s.refused %}; refused: {{ s.refused }}{% endif %}</dd>
+{% else %}<dt>None listed</dt><dd>List ISINs or CUSIPs in Settings.</dd>
+{% endfor %}</dl></div></details></td></tr>
+{{ om.row("Prices", "Not recorded", data.prices) }}
+{% endif %}{% endblock %}
