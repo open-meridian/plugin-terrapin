@@ -1,0 +1,1605 @@
+{
+ "about": "Synthetic answers in the shape of Terrapin's public API documentation (docs.terrapinfinance.com, openapi_spec.json 1.0.0, read 2026-10-30): its examples where it gives them, and made-up values in their shape for the sample week, 26 to 30 October 2026. Not Terrapin's data.",
+ "government_yield_curve": {
+  "de:par:2026-10-26": [
+   {
+    "rate": 1.969,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 1.991,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 2.059,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 2.24,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 2.409,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 2.621,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 2.892,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 3.029,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 3.07,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 3.094,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "de:par:2026-10-27": [
+   {
+    "rate": 1.976,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 1.998,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 2.066,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 2.247,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 2.416,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 2.628,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 2.899,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 3.036,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 3.077,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 3.101,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "de:par:2026-10-28": [
+   {
+    "rate": 1.983,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 2.005,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 2.073,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 2.254,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 2.423,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 2.635,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 2.906,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 3.043,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 3.084,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 3.108,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "de:par:2026-10-29": [
+   {
+    "rate": 1.99,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 2.012,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 2.08,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 2.261,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 2.43,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 2.642,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 2.913,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 3.05,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 3.091,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 3.115,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "de:par:2026-10-30": [
+   {
+    "rate": 1.997,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 2.019,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 2.087,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 2.268,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 2.437,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 2.649,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 2.92,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 3.057,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 3.098,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 3.122,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "uk:par:2026-10-26": [
+   {
+    "rate": 3.849,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.78,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.806,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.942,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.109,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.39,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.776,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.061,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 5.138,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.135,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "uk:par:2026-10-27": [
+   {
+    "rate": 3.856,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.787,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.813,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.949,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.116,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.397,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.783,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.068,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 5.145,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.142,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "uk:par:2026-10-28": [
+   {
+    "rate": 3.863,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.794,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.82,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.956,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.123,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.404,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.79,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.075,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 5.152,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.149,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "uk:par:2026-10-29": [
+   {
+    "rate": 3.87,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.801,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.827,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.963,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.13,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.411,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.797,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.082,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 5.159,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.156,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "uk:par:2026-10-30": [
+   {
+    "rate": 3.877,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.808,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.834,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.97,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.137,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.418,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.804,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.089,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 5.166,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.163,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "us:par:2026-07-23": [
+   {
+    "rate": 4.135,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 4.348,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 4.386,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 4.455,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 4.57,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.702,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 5.047,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 5.158,
+    "years_to_maturity": 30.0
+   },
+   {
+    "rate": 5.193,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 5.198,
+    "years_to_maturity": 20.0
+   }
+  ],
+  "us:par:2026-10-26": [
+   {
+    "rate": 3.9,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.762,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.729,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.79,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 3.905,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.081,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.334,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 4.569,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 4.628,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 4.643,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "us:par:2026-10-27": [
+   {
+    "rate": 3.907,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.769,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.736,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.797,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 3.912,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.088,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.341,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 4.576,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 4.635,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 4.65,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "us:par:2026-10-28": [
+   {
+    "rate": 3.914,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.776,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.743,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.804,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 3.919,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.095,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.348,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 4.583,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 4.642,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 4.657,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "us:par:2026-10-29": [
+   {
+    "rate": 3.921,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.783,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.75,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.811,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 3.926,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.102,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.355,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 4.59,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 4.664,
+    "years_to_maturity": 30.0
+   }
+  ],
+  "us:par:2026-10-30": [
+   {
+    "rate": 3.928,
+    "years_to_maturity": 1.0
+   },
+   {
+    "rate": 3.79,
+    "years_to_maturity": 2.0
+   },
+   {
+    "rate": 3.757,
+    "years_to_maturity": 3.0
+   },
+   {
+    "rate": 3.818,
+    "years_to_maturity": 5.0
+   },
+   {
+    "rate": 3.933,
+    "years_to_maturity": 7.0
+   },
+   {
+    "rate": 4.109,
+    "years_to_maturity": 10.0
+   },
+   {
+    "rate": 4.362,
+    "years_to_maturity": 15.0
+   },
+   {
+    "rate": 4.597,
+    "years_to_maturity": 20.0
+   },
+   {
+    "rate": 4.656,
+    "years_to_maturity": 25.0
+   },
+   {
+    "rate": 4.671,
+    "years_to_maturity": 30.0
+   }
+  ]
+ },
+ "inflation_factors": {
+  "DE": [
+   {
+    "date": "2025-06-01",
+    "factor": 127.43,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2025-10-01",
+    "factor": 129.11,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2025-11-01",
+    "factor": 128.92,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2025-12-01",
+    "factor": 129.36,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-01-01",
+    "factor": 128.27,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-02-01",
+    "factor": 129.08,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-03-01",
+    "factor": 129.62,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-04-01",
+    "factor": 130.17,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-05-01",
+    "factor": 130.25,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-06-01",
+    "factor": 130.61,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-07-01",
+    "factor": 130.95,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-08-01",
+    "factor": 131.02,
+    "type": "Eurostat"
+   },
+   {
+    "date": "2026-09-01",
+    "factor": 130.88,
+    "type": "Eurostat"
+   }
+  ],
+  "UK": [
+   {
+    "date": "2025-10-01",
+    "factor": 138.4,
+    "type": "ONS"
+   },
+   {
+    "date": "2025-11-01",
+    "factor": 138.2,
+    "type": "ONS"
+   },
+   {
+    "date": "2025-12-01",
+    "factor": 138.9,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-01-01",
+    "factor": 138.0,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-02-01",
+    "factor": 138.7,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-03-01",
+    "factor": 139.3,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-04-01",
+    "factor": 140.6,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-05-01",
+    "factor": 141.0,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-06-01",
+    "factor": 141.4,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-07-01",
+    "factor": 141.5,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-08-01",
+    "factor": 141.9,
+    "type": "ONS"
+   },
+   {
+    "date": "2026-09-01",
+    "factor": 142.0,
+    "type": "ONS"
+   }
+  ],
+  "US": [
+   {
+    "date": "2025-10-01",
+    "factor": 324.368,
+    "type": "BLS"
+   },
+   {
+    "date": "2025-11-01",
+    "factor": 324.122,
+    "type": "BLS"
+   },
+   {
+    "date": "2025-12-01",
+    "factor": 323.364,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-01-01",
+    "factor": 324.122,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-02-01",
+    "factor": 325.252,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-03-01",
+    "factor": 326.785,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-04-01",
+    "factor": 327.46,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-05-01",
+    "factor": 327.99,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-06-01",
+    "factor": 328.656,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-07-01",
+    "factor": 329.21,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-08-01",
+    "factor": 329.403,
+    "type": "BLS"
+   },
+   {
+    "date": "2026-09-01",
+    "factor": 329.932,
+    "type": "BLS"
+   }
+  ]
+ },
+ "muni_pricing_history": {
+  "US005824LP01": [
+   {
+    "amount": 25000.0,
+    "id": "sA1kq0W3TbOq5w1uGQd9zA",
+    "is_alt_trading_system": false,
+    "is_cancelled": false,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": false,
+    "is_when_issued_trade": false,
+    "isin": "US005824LP01",
+    "price": 109.214,
+    "settlement_date": "2026-10-27",
+    "trade_datetime": "2026-10-26T14:31:07",
+    "trade_type": "customer_bought",
+    "ytc_continuous": null,
+    "ytc_money_market": null,
+    "ytc_semi_annual": null,
+    "ytm_continuous": null,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.4021
+   },
+   {
+    "amount": 25000.0,
+    "id": "sB7c2Lr1Q0eV0m0pXl2a1w",
+    "is_alt_trading_system": true,
+    "is_cancelled": false,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": false,
+    "is_when_issued_trade": false,
+    "isin": "US005824LP01",
+    "price": 108.902,
+    "settlement_date": "2026-10-28",
+    "trade_datetime": "2026-10-27T15:02:44",
+    "trade_type": "inter_dealer",
+    "ytc_continuous": null,
+    "ytc_money_market": null,
+    "ytc_semi_annual": null,
+    "ytm_continuous": null,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.4447
+   },
+   {
+    "amount": 50000.0,
+    "id": "sC3d9Pq8RkuW2n4tYb7c5g",
+    "is_alt_trading_system": false,
+    "is_cancelled": false,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": true,
+    "is_when_issued_trade": false,
+    "isin": "US005824LP01",
+    "price": 108.75,
+    "settlement_date": "2026-10-29",
+    "trade_datetime": "2026-10-28T18:45:10",
+    "trade_type": "customer_sold",
+    "ytc_continuous": null,
+    "ytc_money_market": null,
+    "ytc_semi_annual": null,
+    "ytm_continuous": null,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.4655
+   },
+   {
+    "amount": 10000.0,
+    "id": "sD5f1Mw6TiyX8o2uZc3e7h",
+    "is_alt_trading_system": false,
+    "is_cancelled": true,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": false,
+    "is_when_issued_trade": false,
+    "isin": "US005824LP01",
+    "price": 109.05,
+    "settlement_date": "2026-10-30",
+    "trade_datetime": "2026-10-29T16:20:33",
+    "trade_type": "customer_bought",
+    "ytc_continuous": null,
+    "ytc_money_market": null,
+    "ytc_semi_annual": null,
+    "ytm_continuous": null,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.4243
+   }
+  ],
+  "US1966324Q32": [
+   {
+    "amount": 15000.0,
+    "id": "wD0jsvt_Nnkl_i-V6Lq1tQ",
+    "is_alt_trading_system": false,
+    "is_cancelled": false,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": false,
+    "is_when_issued_trade": false,
+    "isin": "US1966324Q32",
+    "price": 113.45,
+    "settlement_date": "2025-02-24",
+    "trade_datetime": "2025-02-21T19:10:48",
+    "trade_type": "customer_sold",
+    "ytc_continuous": 3.1926,
+    "ytc_money_market": null,
+    "ytc_semi_annual": 3.2182,
+    "ytm_continuous": 3.55388,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.5856
+   },
+   {
+    "amount": 15000.0,
+    "id": "xplI0HhwQ410xGbjZ86VgQ",
+    "is_alt_trading_system": false,
+    "is_cancelled": false,
+    "is_list_offering_price": false,
+    "is_non_transaction_compensation": false,
+    "is_weighted_avg_price_trade": false,
+    "is_when_issued_trade": false,
+    "isin": "US1966324Q32",
+    "price": 113.45,
+    "settlement_date": "2025-02-24",
+    "trade_datetime": "2025-02-21T19:10:48",
+    "trade_type": "inter_dealer",
+    "ytc_continuous": 3.1926,
+    "ytc_money_market": null,
+    "ytc_semi_annual": 3.2182,
+    "ytm_continuous": 3.55388,
+    "ytm_money_market": null,
+    "ytm_semi_annual": 3.5856
+   }
+  ]
+ },
+ "muni_reference": {
+  "US005824LP01": {
+   "advisors": [
+    "PMA Securities, Inc"
+   ],
+   "award_date": "2024-01-30",
+   "award_time": "14:57:00",
+   "bond_counsel": [
+    "Chapman and Cutler, LLP"
+   ],
+   "capital_purpose": "new money",
+   "closing_date": "2024-02-20",
+   "composite_rating": "AA-",
+   "counties": [
+    "Adams"
+   ],
+   "country": "United States of America",
+   "country_code": "US",
+   "coupon_frequency": 2,
+   "coupon_payment_day": 1,
+   "coupon_payment_months": [
+    2,
+    8
+   ],
+   "credit_enhancement_type": [
+    "bond_insurance"
+   ],
+   "currency": "USD",
+   "dated_date": "2024-02-20",
+   "disclosure_counsel": [
+    "Chapman and Cutler, LLP"
+   ],
+   "escrowed_amount": 0.0,
+   "event_call": [],
+   "event_consolidation": [],
+   "event_creation": {
+    "amount": 240000,
+    "date": "2024-01-30",
+    "description": "Primary issuance [negotiated_sale]",
+    "history": [],
+    "publish_date": "2024-02-05"
+   },
+   "event_defeasance": [],
+   "event_exchange_offer": [],
+   "event_identifier_relabel": [],
+   "event_split": [],
+   "event_split_and_suspend": [],
+   "event_tender_offer_invitation": [],
+   "event_tender_offer_result": [],
+   "extraordinary_optional_redemption": null,
+   "figi": "BBG01L7LZSL5",
+   "figi_name": "ADAMS CO SD #172",
+   "first_call_date": "2032-02-01",
+   "first_execution_date": "2024-01-31",
+   "first_execution_time": "10:30:00",
+   "first_interest_payment_date": "2024-08-01",
+   "first_trade_date": "2024-01-31",
+   "gas_prepay_guarantor": null,
+   "guarantee": "unsecured",
+   "has_mandatory_redemption": false,
+   "has_official_statement": true,
+   "instrument_form": "bond",
+   "insurers": [
+    "Assured Guaranty Municipal Corporation"
+   ],
+   "integral_multiple": 5000.0,
+   "interest_accrual_convention": "30/360",
+   "interest_accrual_date": "2024-02-20",
+   "interest_maximum_rate": null,
+   "interest_minimum_rate": null,
+   "interest_payment_schedule": [
+    {
+     "interest_type": "regular",
+     "payment_date": {
+      "day": 1,
+      "month": 8,
+      "year": 2024
+     },
+     "periodic_schedule": {
+      "period_amount": 6,
+      "period_type": "month",
+      "until": null
+     }
+    }
+   ],
+   "interest_rate": 5,
+   "interest_rate_schedule": [
+    {
+     "determination_period": null,
+     "from_date": null,
+     "interest_rate": 5,
+     "interest_type": "fixed",
+     "rate_mode_name": null,
+     "until_date": null
+    }
+   ],
+   "interest_type": "fixed rate",
+   "is_144a": false,
+   "is_amt": false,
+   "is_bab": false,
+   "is_bank_qualified": true,
+   "is_callable": true,
+   "is_credit_enhanced": true,
+   "is_defeased": false,
+   "is_federally_taxable": false,
+   "is_green": false,
+   "is_insured": true,
+   "is_outstanding": true,
+   "is_pac": false,
+   "is_regs": false,
+   "is_social": false,
+   "is_state_enhanced": false,
+   "is_state_taxable": true,
+   "is_sustainable": false,
+   "isin": "US005824LP01",
+   "issue_date": "2024-01-30",
+   "issue_price": 111.945,
+   "issue_yield": 3.28,
+   "issued_amount": 240000.0,
+   "issuer_canonical_id": 50926,
+   "issuer_name": "School District Number 172",
+   "liquidity_facility": null,
+   "mandatory_redemption_schedule": [],
+   "mandatory_redemption_type": null,
+   "maturity_amount": 240000.0,
+   "maturity_date": "2035-02-01",
+   "minimum_denomination": 5000.0,
+   "next_call_date": "2032-02-01",
+   "next_call_price": 100.0,
+   "next_coupon_date": "2027-02-01",
+   "next_sink_amount": null,
+   "next_sink_date": null,
+   "next_sink_price": null,
+   "obligation_types": [
+    "unlimited_tax_go"
+   ],
+   "obligor": "School District Number 172",
+   "obligor_canonical_id": 50926,
+   "odd_first_coupon": "short",
+   "odd_last_coupon": "regular",
+   "optional_redemption_max_notice": 60,
+   "optional_redemption_min_notice": 30,
+   "optional_redemption_schedule": [
+    {
+     "call_date": "2032-02-01",
+     "call_price": {
+      "spread_in_bps": 0,
+      "type": "principal"
+     },
+     "includes_accrued_interest": true,
+     "is_periodic": true,
+     "period_amount": 1,
+     "period_type": "day",
+     "until": null
+    }
+   ],
+   "outstanding_amount": 240000.0,
+   "parent_isin": null,
+   "previous_coupon_date": "2026-08-01",
+   "provider_expiration_date": null,
+   "provider_identity": null,
+   "rating_group": "investment_grade",
+   "remarketing_agents": [],
+   "reserve_fund": false,
+   "retired_amount_attribution": {},
+   "sale_type": "negotiated_sale",
+   "sector": "education",
+   "sector_level1": "education",
+   "sector_level2": "public_school_district",
+   "seniority": "senior",
+   "series": "General Obligation School Bonds, Series 2024",
+   "series_issued_amount": 6770000.0,
+   "source_of_repayment": "General Obligation",
+   "state": "IL",
+   "tender_agents": [],
+   "tender_schedule": null,
+   "ticker": "IL ADASCD 5 02/01/2035",
+   "trustees": [],
+   "underwriters": [
+    "STIFEL"
+   ],
+   "upcoming_corporate_action": null,
+   "use_categories": [
+    "primary and secondary education"
+   ],
+   "use_sectors": [
+    "education"
+   ],
+   "uses_of_proceeds": [
+    "public school district"
+   ],
+   "validation_errors": [],
+   "variable_rate_adjustment_schedule": null,
+   "variable_rate_mode": null
+  }
+ },
+ "securities_cashflows": {
+  "US3134H1HN66": {
+   "cashflows": [
+    {
+     "amount": 2.75,
+     "date": "2024-04-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2024-10-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2025-04-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2025-10-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2026-04-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2026-10-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2027-04-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2027-10-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2028-04-20",
+     "type": "interest"
+    },
+    {
+     "amount": 2.75,
+     "date": "2028-10-20",
+     "type": "interest"
+    },
+    {
+     "amount": 100,
+     "date": "2028-10-20",
+     "type": "principal"
+    }
+   ],
+   "isin": "US3134H1HN66"
+  }
+ },
+ "securities_reference": {
+  "US037833ER75": {
+   "asset_class": "corporate",
+   "cfi_code": "DBFTFR",
+   "country": "United States of America",
+   "country_code": "US",
+   "coupon_frequency": 2,
+   "coupon_payment_day": 5,
+   "coupon_payment_months": [
+    2,
+    8
+   ],
+   "currency": "USD",
+   "figi": "BBG01BOND0001",
+   "figi_name": "APPLE INC",
+   "first_call_date": "2026-08-05",
+   "first_interest_payment_date": "2026-08-05",
+   "first_trade_date": "2026-02-02",
+   "guarantee": "unsecured",
+   "industry_group": "technology hardware & equipment",
+   "integral_multiple": 1000.0,
+   "interest_accrual_convention": "30/360",
+   "interest_accrual_date": "2026-02-05",
+   "interest_rate": 4.875,
+   "interest_type": "fixed rate",
+   "is_144a": false,
+   "is_callable": true,
+   "is_complete_bond": true,
+   "is_outstanding": true,
+   "is_puttable": false,
+   "is_regs": false,
+   "isin": "US037833ER75",
+   "issuance_settlement_days": 3,
+   "issue_date": "2026-02-05",
+   "issue_price": 99.812,
+   "issue_yield": 4.899,
+   "issued_amount": 1500000000.0,
+   "issuer_name": "APPLE INC",
+   "issuer_type": "corporate",
+   "lei": "HWUPKR0MPOU8FGXBT394",
+   "maturity_date": "2036-02-05",
+   "maturity_type": "fixed",
+   "minimum_denomination": 2000.0,
+   "name": "APPLE INC 4.875% 2036",
+   "next_call_date": "2026-11-05",
+   "next_coupon_date": "2027-02-05",
+   "odd_first_coupon": "regular",
+   "odd_last_coupon": "regular",
+   "optional_redemption_schedule": [
+    {
+     "call_date": "2026-08-05",
+     "call_price": {
+      "benchmark": "treasury",
+      "spread_in_bps": 15,
+      "type": "make-whole"
+     },
+     "includes_accrued_interest": true,
+     "is_periodic": true,
+     "period_amount": 1,
+     "period_type": "day",
+     "until": "2035-11-05"
+    },
+    {
+     "call_date": "2035-11-05",
+     "call_price": {
+      "spread_in_bps": 0,
+      "type": "principal"
+     },
+     "includes_accrued_interest": true,
+     "is_periodic": true,
+     "period_amount": 1,
+     "period_type": "day",
+     "until": null
+    }
+   ],
+   "previous_coupon_date": "2026-08-05",
+   "registration_type": "registered",
+   "sector": "information technology",
+   "security_type": "bond",
+   "seniority": "senior",
+   "ticker": "AAPL 4.875 02/05/36",
+   "validation_errors": []
+  },
+  "US06051XAB41": {
+   "asset_class": "certificates_of_deposit",
+   "country": "United States of America",
+   "country_code": "US",
+   "coupon_frequency": 12,
+   "currency": "USD",
+   "first_interest_payment_date": "2026-05-16",
+   "integral_multiple": 1000.0,
+   "interest_accrual_convention": "act/365",
+   "interest_accrual_date": "2026-04-16",
+   "interest_rate": 4.1,
+   "interest_type": "fixed rate",
+   "is_callable": false,
+   "is_complete_bond": true,
+   "is_outstanding": true,
+   "isin": "US06051XAB41",
+   "issue_date": "2026-04-16",
+   "issued_amount": 2500000.0,
+   "issuer_name": "SAMPLE NATIONAL BANK",
+   "issuer_type": "corporate",
+   "maturity_date": "2028-04-17",
+   "minimum_denomination": 1000.0,
+   "name": "SAMPLE NATIONAL BANK CD 4.1% 2028",
+   "security_type": "certificate_of_deposit"
+  },
+  "US3134HCZH51": {
+   "asset_class": "us_agency",
+   "cfi_code": "DBFNGR",
+   "composite_issue_rating": "AA+",
+   "composite_issuer_rating": "AAA",
+   "country": "United States of America",
+   "country_code": "US",
+   "coupon_frequency": 2,
+   "coupon_payment_day": 16,
+   "coupon_payment_months": [
+    3,
+    9
+   ],
+   "currency": "USD",
+   "figi": "BBG020WFFJW5",
+   "figi_name": "FREDDIE MAC",
+   "first_call_date": "2028-03-16",
+   "first_interest_payment_date": "2026-09-16",
+   "integral_multiple": 1000.0,
+   "interest_accrual_convention": "30/360",
+   "interest_accrual_date": "2026-03-16",
+   "interest_payment_schedule": [
+    {
+     "interest_type": "regular",
+     "payment_date": {
+      "day": 16,
+      "month": 9,
+      "year": 2026
+     },
+     "periodic_schedule": {
+      "period_amount": 6,
+      "period_type": "month",
+      "until": null
+     }
+    }
+   ],
+   "interest_rate": 5.2,
+   "interest_rate_schedule": [
+    {
+     "determination_period": null,
+     "from_date": null,
+     "interest_rate": 5.2,
+     "interest_type": "fixed",
+     "rate_mode_name": null,
+     "until_date": null
+    }
+   ],
+   "interest_type": "fixed rate",
+   "is_144a": false,
+   "is_callable": true,
+   "is_covered": false,
+   "is_green": false,
+   "is_inflation_linked": false,
+   "is_outstanding": true,
+   "is_puttable": false,
+   "is_regs": false,
+   "isin": "US3134HCZH51",
+   "issue_date": "2026-03-16",
+   "issue_price": 100.0,
+   "issued_amount": 50000000.0,
+   "issuer_name": "FEDERAL HOME LOAN MORTGAGE CORPORATION",
+   "lei": "S6XOOCT0IEG5ABCC6L87",
+   "maturity_date": "2056-03-16",
+   "maturity_type": "fixed",
+   "minimum_denomination": 1000.0,
+   "next_call_date": "2028-03-16",
+   "next_call_price": 100.0,
+   "next_coupon_date": "2026-09-16",
+   "odd_first_coupon": "regular",
+   "odd_last_coupon": "regular",
+   "optional_redemption_schedule": [
+    {
+     "call_date": "2028-03-16",
+     "call_price": {
+      "spread_in_bps": 0.0,
+      "type": "principal"
+     },
+     "includes_accrued_interest": true,
+     "is_periodic": true,
+     "period_amount": 3,
+     "period_type": "month",
+     "until": null
+    }
+   ],
+   "previous_coupon_date": null,
+   "rank": "senior",
+   "registration_type": "registered",
+   "standard_day_of_settlement": null,
+   "ticker": "FHLMC 5.2 03/16/56",
+   "underwriters": [
+    "MESIROW FINANCIAL"
+   ],
+   "validation_errors": []
+  },
+  "US912810UA42": {
+   "alternative_names": null,
+   "asset_class": "gov",
+   "cfi_code": "DBFTFR",
+   "composite_issue_rating": "AAA",
+   "composite_issuer_rating": null,
+   "country": "United States of America",
+   "country_code": "US",
+   "coupon_frequency": 2,
+   "coupon_payment_day": 15,
+   "coupon_payment_months": [
+    5,
+    11
+   ],
+   "currency": "USD",
+   "figi": "BBG01MPC8XR6",
+   "figi_name": null,
+   "first_call_date": null,
+   "first_interest_payment_date": "2024-11-15",
+   "first_trade_date": null,
+   "guarantee": null,
+   "industry_group": "public",
+   "integral_multiple": 100.0,
+   "interest_accrual_convention": "act/act",
+   "interest_accrual_date": "2024-05-15",
+   "interest_payment_schedule": [],
+   "interest_rate": 4.625,
+   "interest_rate_schedule": [],
+   "interest_type": "fixed rate",
+   "is_144a": null,
+   "is_callable": false,
+   "is_complete_bond": true,
+   "is_covered": false,
+   "is_green": false,
+   "is_outstanding": true,
+   "is_puttable": false,
+   "is_regs": null,
+   "isin": "US912810UA42",
+   "issuance_settlement_days": null,
+   "issue_date": "2024-05-15",
+   "issue_price": null,
+   "issue_rating_group": "investment_grade",
+   "issue_yield": null,
+   "issued_amount": 76428289300.0,
+   "issuer_name": "UNITED STATES DEPARTMENT OF THE TREASURY",
+   "issuer_rating_group": null,
+   "issuer_type": "government",
+   "lei": "254900HROIFWPRGM1V77",
+   "lei_direct_parent": null,
+   "lei_ultimate_parent": null,
+   "lt_issue_ratings": {
+    "moodys": "Aaa"
+   },
+   "lt_issuer_ratings": null,
+   "maturity_date": "2054-05-15",
+   "maturity_type": "fixed",
+   "minimum_denomination": 100.0,
+   "name": "UNITED STATES DEPARTMENT OF THE TREASURY 4.625% 2054",
+   "next_call_date": null,
+   "next_call_price": null,
+   "next_coupon_date": "2026-11-15",
+   "odd_first_coupon": "regular",
+   "odd_last_coupon": "regular",
+   "optional_redemption_schedule": null,
+   "previous_coupon_date": "2026-05-15",
+   "registration_type": "registered",
+   "sector": "public",
+   "security_type": "bond",
+   "seniority": "SNDB",
+   "st_issue_ratings": null,
+   "st_issuer_ratings": null,
+   "ticker": "T 4.75 05/15/54",
+   "validation_errors": []
+  },
+  "XS2724510792": {
+   "alternative_names": null,
+   "asset_class": "corporate",
+   "cfi_code": "DTFUFB",
+   "composite_issue_rating": "BBB+",
+   "composite_issuer_rating": "BBB",
+   "country": "Greece",
+   "country_code": "GR",
+   "coupon_frequency": 1,
+   "coupon_payment_day": 28,
+   "coupon_payment_months": [
+    11
+   ],
+   "currency": "EUR",
+   "figi": "BBG01K89S0G8",
+   "figi_name": "EUROBANK SA",
+   "first_call_date": "2028-11-28",
+   "first_interest_payment_date": "2024-11-28",
+   "first_trade_date": "2023-11-28",
+   "guarantee": "unsecured",
+   "industry_group": "banks",
+   "integral_multiple": 100000.0,
+   "interest_accrual_convention": "act/act (ICMA)",
+   "interest_accrual_date": "2023-11-28",
+   "interest_payment_schedule": [],
+   "interest_rate": 5.875,
+   "interest_rate_schedule": [],
+   "interest_type": "variable rate",
+   "is_144a": true,
+   "is_callable": true,
+   "is_complete_bond": true,
+   "is_covered": false,
+   "is_green": null,
+   "is_outstanding": true,
+   "is_puttable": false,
+   "is_regs": true,
+   "isin": "XS2724510792",
+   "issuance_settlement_days": 3,
+   "issue_date": "2023-11-28",
+   "issue_price": 100.0,
+   "issue_rating_group": "investment_grade",
+   "issue_yield": 5.875,
+   "issued_amount": 500000000.0,
+   "issuer_name": "EUROBANK SA",
+   "issuer_rating_group": "investment_grade",
+   "issuer_type": "corporate",
+   "lei": "213800KGF4EFNUQKAT69",
+   "lei_direct_parent": "JEUVK5RWVJEN8W0C9M24",
+   "lei_ultimate_parent": "JEUVK5RWVJEN8W0C9M24",
+   "lt_issue_ratings": null,
+   "lt_issuer_ratings": null,
+   "maturity_date": "2029-11-28",
+   "maturity_type": "fixed",
+   "minimum_denomination": 100000.0,
+   "name": "EUROBANK SA FRN 2029",
+   "next_call_date": "2028-11-28",
+   "next_call_price": 100.0,
+   "next_coupon_date": "2026-11-28",
+   "odd_first_coupon": "regular",
+   "odd_last_coupon": "regular",
+   "optional_redemption_schedule": [],
+   "previous_coupon_date": "2025-11-28",
+   "registration_type": "bearer",
+   "sector": "financials",
+   "security_type": "bond",
+   "seniority": "senior",
+   "st_issue_ratings": null,
+   "st_issuer_ratings": null,
+   "ticker": "EUROB V5.875 11/28/29 EMTN",
+   "validation_errors": []
+  }
+ },
+ "today": "2026-10-30"
+}

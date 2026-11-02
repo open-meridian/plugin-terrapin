@@ -1,0 +1,6 @@
+# The e2e's hosts file, mounted over the plugin's /etc/hosts (e2e/plugin.yaml):
+# Terrapin's API answers nowhere, so the run never reads it; sample data
+# reads only the answers committed with the plugin.
+127.0.0.1 localhost
+::1 localhost
+127.0.0.1 terrapinfinance.com

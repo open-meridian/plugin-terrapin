@@ -1,0 +1,26 @@
+{
+  "about": "An accrual oracle for the engine (Track D): Terrapin's agency_cashflows example from its public documentation (docs.terrapinfinance.com, openapi_spec.json 1.0.0, read 2026-10-30), per 100 of face, beside the terms it implies: 5.5 per cent, 30/360, semi-annual on 20 April and 20 October, maturing 20 October 2028. The dated date is the coupon date before the first cash flow stated.",
+  "isin": "US3134H1HN66",
+  "terms": {
+    "coupon_rate": "5.5",
+    "coupon_frequency": 2,
+    "day_count": "DAY_COUNT_THIRTY_360_BOND_BASIS",
+    "dated_date": "2023-10-20",
+    "maturity_date": "2028-10-20"
+  },
+  "terrapin": {
+    "cashflows": [
+      {"amount": 2.75, "date": "2024-04-20", "type": "interest"},
+      {"amount": 2.75, "date": "2024-10-20", "type": "interest"},
+      {"amount": 2.75, "date": "2025-04-20", "type": "interest"},
+      {"amount": 2.75, "date": "2025-10-20", "type": "interest"},
+      {"amount": 2.75, "date": "2026-04-20", "type": "interest"},
+      {"amount": 2.75, "date": "2026-10-20", "type": "interest"},
+      {"amount": 2.75, "date": "2027-04-20", "type": "interest"},
+      {"amount": 2.75, "date": "2027-10-20", "type": "interest"},
+      {"amount": 2.75, "date": "2028-04-20", "type": "interest"},
+      {"amount": 2.75, "date": "2028-10-20", "type": "interest"},
+      {"amount": 100, "date": "2028-10-20", "type": "principal"}
+    ]
+  }
+}
