@@ -31,7 +31,7 @@ list changes.
 On the deployment's **Data sources** page (deployment admins):
 
 1. **License** `<instance>:government_curves`, `inflation` and
-   `muni_trades` on the terms your Terrapin agreement gives you. The
+   `msrb_prints` on the terms your Terrapin agreement gives you. The
    plugin declares no default terms: they are yours and Terrapin's to settle.
 2. **Entitle** each plugin that reads them.
 3. **Priority**, where another dataset also records a curve's points or a

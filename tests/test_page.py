@@ -23,7 +23,7 @@ def client() -> PageClient:
     async def run() -> None:
         await work.check()
         record = work.records[MUNI]
-        await work.on_observations_wanted(want("w-1", "muni_trades", [record], day="2026-10-27"))
+        await work.on_observations_wanted(want("w-1", "msrb_prints", [record], day="2026-10-27"))
 
     asyncio.run(run())
     hold(work)
@@ -51,7 +51,7 @@ def test_connection_lists_the_securities_and_their_terms(client: PageClient) -> 
 
 def test_datasets_lists_each_dataset_and_its_records(client: PageClient) -> None:
     text = client.get("/datasets", "admin").text
-    for key in ("government_curves", "inflation", "muni_trades"):
+    for key in ("government_curves", "inflation", "msrb_prints"):
         assert f"<code>terrapin:{key}</code>" in text
     assert "LCL-" in text or "INS-" in text
 
@@ -65,7 +65,7 @@ def test_the_tools_answer_what_the_pages_show(client: PageClient) -> None:
     assert connection["credentials"] == [{"label": "Terrapin API key", "set": True}]
     datasets = client.call_tool("read_datasets").data
     assert [s["dataset"] for s in datasets["served"]] == [
-        f"terrapin:{k}" for k in ("government_curves", "inflation", "muni_trades")
+        f"terrapin:{k}" for k in ("government_curves", "inflation", "msrb_prints")
     ]
     assert {r["code"] for r in datasets["records"]} >= {"TERRAPIN_US_PAR", "TERRAPIN_US_INFLATION"}
 

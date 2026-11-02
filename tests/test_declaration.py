@@ -11,7 +11,7 @@ from terrapin.settings import config_from
 def test_three_datasets_and_no_price() -> None:
     catalogue = DECLARATION.catalogue
     assert [d.key for d in catalogue] == [
-        "government_curves", "inflation", "muni_trades",
+        "government_curves", "inflation", "msrb_prints",
     ]  # fmt: skip
     for dataset in catalogue:
         assert dataset.vendor == "Terrapin"
