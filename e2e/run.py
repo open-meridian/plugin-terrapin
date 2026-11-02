@@ -45,7 +45,7 @@ COMPONENTS = ".e2e/components.log"
 COMPOSE = ["docker", "compose", "-p", PROJECT, "-f", ".e2e/harness/compose.yaml",
            "-f", ".e2e/harness/plugins.yaml", "-f", "e2e/plugin.yaml"]
 INSTANCE = "terrapin"
-KEYS = ["government_curves", "inflation", "muni_trades"]
+KEYS = ["government_curves", "inflation", "msrb_prints"]
 DATASETS = [f"{INSTANCE}:{key}" for key in KEYS]
 CURVES, INFLATION, TRADES = DATASETS
 APPLE, MUNI = "US037833ER75", "US005824LP01"

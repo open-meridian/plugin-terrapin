@@ -41,7 +41,7 @@ from meridian.plugin.v1 import operations_pb2 as ops
 from meridian.suites import ANSWERED_BY_SDK, Recorder, run, suite
 
 from terrapin.curves import CURVES_KEY, US
-from terrapin.trades import MUNI_TRADES
+from terrapin.trades import MSRB_PRINTS
 
 from conftest import APPLE, MUNI, Revised, holding, lake, source, want
 
@@ -159,7 +159,7 @@ def a_print(which: str) -> Producer:
             "cancelled": [r for r in rows if r.cancelled],
         }[which]  # fmt: skip
         assert picked, which
-        await work.wants.record("trades", picked[:1], MUNI_TRADES)
+        await work.wants.record("trades", picked[:1], MSRB_PRINTS)
 
     return produce
 
@@ -176,7 +176,7 @@ async def declined(recorder: Recorder) -> None:
     recorder.answer("ResolveInstrument", lambda _: ops.ResolveInstrumentResult(found=False))
     work = lake(recorder, securities=())
     recorder.answer(
-        "ObservationsWanted", lambda _: want("w-1", MUNI_TRADES, ["INS-NOT-A-MUNI"]).message
+        "ObservationsWanted", lambda _: want("w-1", MSRB_PRINTS, ["INS-NOT-A-MUNI"]).message
     )
     await recorder.hear(work, "ObservationsWanted")
 
@@ -185,7 +185,7 @@ async def withdrawn(recorder: Recorder) -> None:
     work = lake(recorder, securities=())
     recorder.answer(
         "WantWithdrawn",
-        lambda _: ops.WantWithdrawnEvent(want_id="w-1", dataset=f"terrapin:{MUNI_TRADES}"),
+        lambda _: ops.WantWithdrawnEvent(want_id="w-1", dataset=f"terrapin:{MSRB_PRINTS}"),
     )
     await recorder.hear(work, "WantWithdrawn")
 

@@ -7,7 +7,7 @@ Terrapin's public API documentation (rulings 868, 869, 1059).
 
 - `data`: each region's government par yield curve (`government_curves`:
   US, UK, Germany), each country's inflation index level (`inflation`) and
-  municipal bonds' MSRB prints (`muni_trades`), with the fixed-income trade
+  municipal bonds' MSRB prints (`msrb_prints`), with the fixed-income trade
   characteristics and the price per 100 of par; a print Terrapin marks
   cancelled recorded again as withdrawn. Terrapin's own curves and indexes
   are local records, their rates recorded once a person accepts them.

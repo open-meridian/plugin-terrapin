@@ -43,7 +43,7 @@ from meridian.plugin.v1 import operations_pb2 as ops
 
 from . import read
 
-MUNI_TRADES = "muni_trades"
+MSRB_PRINTS = "msrb_prints"
 #: How the source is named on what is kept as reported.
 SOURCE = "terrapin"
 

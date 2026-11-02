@@ -13,7 +13,7 @@ from meridian.suites import Recorder
 
 from terrapin import curves
 from terrapin.lake import Lake
-from terrapin.trades import MUNI_TRADES
+from terrapin.trades import MSRB_PRINTS
 
 from conftest import LISTED, MUNI, holding, lake, want
 
@@ -33,7 +33,7 @@ def test_the_check_records_curves_indexes_and_prints() -> None:
     assert datasets == {"terrapin:government_curves", "terrapin:inflation"}
     trades = [t for sent in recorder.on("RecordTrades") for t in sent.trades]
     assert len(trades) == 4 and {t.meta.source.dataset for t in trades} == {
-        f"terrapin:{MUNI_TRADES}"
+        f"terrapin:{MSRB_PRINTS}"
     }
     # Each listed security resolved, five offered terms (the muni's record a
     # bond's too), no price recorded.
@@ -111,7 +111,7 @@ def test_a_want_of_a_muni_s_prints_is_recorded_against() -> None:
     work = lake(recorder)
     asyncio.run(work.terms())
     record = work.records[MUNI]
-    asyncio.run(work.on_observations_wanted(want("w-1", MUNI_TRADES, [record], day="2026-10-27")))
+    asyncio.run(work.on_observations_wanted(want("w-1", MSRB_PRINTS, [record], day="2026-10-27")))
     [sent] = recorder.on("RecordTrades")
     assert sent.want_id == "w-1" and len(sent.trades) == 1
 

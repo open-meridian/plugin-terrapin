@@ -49,7 +49,7 @@ def _want(want_id: str, subject: str, day: str) -> Heard[ops.ObservationsWantedE
         row="ObservationsWanted",
         message=ops.ObservationsWantedEvent(
             want_id=want_id,
-            dataset="terrapin:muni_trades",
+            dataset="terrapin:msrb_prints",
             data_type="meridian.v1.Trade",
             subjects=[ops.SubjectRef(entity_id=subject)],
             business_date=day,

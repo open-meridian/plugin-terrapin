@@ -12,7 +12,7 @@ feed):
   day is UTC, the three regions' dates all falling within it;
 - `inflation` -- each country's inflation index level by month, a `Rate`
   of kind `index_level`, pushed and pulled, its day UTC;
-- `muni_trades` -- municipal bonds' prints as MSRB disseminates them, read
+- `msrb_prints` -- municipal bonds' prints as MSRB disseminates them, read
   through Terrapin, a `Trade` each (trades.py), pushed for the securities
   the deployment lists and pulled on a want, their day New York's.
 
@@ -38,7 +38,7 @@ from __future__ import annotations
 from meridian import DatasetDeclaration
 
 from .curves import CURVES_KEY, INFLATION_KEY
-from .trades import MUNI_TRADES
+from .trades import MSRB_PRINTS
 
 VENDOR = "Terrapin"
 RATE = "meridian.v1.Rate"
@@ -72,7 +72,7 @@ INFLATION = DatasetDeclaration(
 )
 
 TRADES = DatasetDeclaration(
-    key=MUNI_TRADES,
+    key=MSRB_PRINTS,
     vendor=VENDOR,
     data_types=[TRADE],
     modes=["push", "pull"],

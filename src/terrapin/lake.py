@@ -15,7 +15,7 @@ when the settings change):
   those it does not hold), each resolved to the deployment's record and
   its issuer's LEI to the `ENT-` company record, the terms offered by the
   `reference` role (terms.py); and each municipal bond's prints over the
-  last seven days (`muni_trades`).
+  last seven days (`msrb_prints`).
 
 **What the lake wants** (`on_observations_wanted`): a curve for a date, a
 country's index over a range, a municipal bond's prints over a range --
@@ -55,7 +55,7 @@ from .terms import terms as terms_of
 log = logging.getLogger("terrapin")
 
 #: Its datasets' keys, as the catalogue declares them.
-KEYS = (CURVES_KEY, INFLATION_KEY, trades.MUNI_TRADES)
+KEYS = (CURVES_KEY, INFLATION_KEY, trades.MSRB_PRINTS)
 #: Why a curve's or an index's rates wait.
 AWAITS = "its record awaits a person's acceptance at the Instruments page"
 #: How far back the hourly check reads.
@@ -403,13 +403,13 @@ class Lake(data.Role):
         """A municipal bond's prints over a range, as trades."""
         body = {"isin": isin, "start_date": start.isoformat(), "end_date": end.isoformat()}
         rows: list[meridian.Trade] = []
-        dataset = self.wants.dataset(trades.MUNI_TRADES)
+        dataset = self.wants.dataset(trades.MSRB_PRINTS)
         for item in await self.ask("muni_pricing_history", body):
             trade_id = read.text(item.get("id"))
             made = trades.convert(item, subject, dataset,
                                   self.raw(f"muni_pricing_history/{isin}/{trade_id}"))  # fmt: skip
             if isinstance(made, trades.Unread):
-                self.status.said(f"muni_trades: {made.why}")
+                self.status.said(f"msrb_prints: {made.why}")
                 continue
             rows.append(made)
         return rows
@@ -441,7 +441,7 @@ class Lake(data.Role):
                     isin, subject, today - timedelta(days=PRINT_DAYS), today
                 )
                 fresh = [p for p in prints if self.printed.get(_key(p)) != p.cancelled]
-                recording = self.wants.record("trades", fresh, trades.MUNI_TRADES)
+                recording = self.wants.record("trades", fresh, trades.MSRB_PRINTS)
                 if await self.kept(f"{isin}'s prints", recording):
                     self.printed.update({_key(p): p.cancelled for p in fresh})
         await self.kept_current(today)
@@ -474,7 +474,7 @@ class Lake(data.Role):
         the curves and indexes are read above whatever is wanted."""
         for want in list(self.wants.standing.values()):
             key = self.wants.key_of(want.dataset)
-            if key != trades.MUNI_TRADES:
+            if key != trades.MSRB_PRINTS:
                 continue
             event = ops.ObservationsWantedEvent(
                 want_id=want.want_id, dataset=want.dataset, data_type=want.data_type,
@@ -565,7 +565,7 @@ class Lake(data.Role):
                     continue
                 rows += await self.inflation_rows(country, start, end)
             await self.feeds[INFLATION_KEY].record(INFLATION_KEY, rows, want.want_id)
-        elif key == trades.MUNI_TRADES:
+        elif key == trades.MSRB_PRINTS:
             start, end = self._range(want, WANT_DAYS)
             prints: list[meridian.Trade] = []
             for s in subjects:
