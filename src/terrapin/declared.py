@@ -28,9 +28,11 @@ curves and prints are no venue's (a municipal print is reported to MSRB,
 not executed on an exchange).
 
 **Terms** are the deployment's to settle with Terrapin (rulings 1030 to
-1032): no default licence is declared; docs/terms.md describes Terrapin's
-published terms in plain words for the deployment admin, who sets each
-dataset's licence on the Data sources page.
+1032): each dataset describes Terrapin's published terms in words
+(`terms_and_pricing`, contract 30), as docs/terms.md does, for the
+deployment admin, who sets each dataset's licence on the Data sources page.
+**A gap** is recovered by `backfill` (`gap_recovery`): Terrapin serves each
+feed's history, read again on a want.
 """
 
 from __future__ import annotations
@@ -48,6 +50,29 @@ DAY = 86_400
 MONTH = 30 * DAY
 #: How far back Terrapin's Startup tier reaches: a year.
 HISTORY = 365
+#: Terrapin's published terms in plain words (contract 30, ruling 1032), as
+#: read on 30 October 2026 (terrapinfinance.com/terms, updated 29 October
+#: 2026): docs/terms.md, shortened.
+TERMS = (
+    "Terrapin Finance Ltd's data, under your subscription: use for internal business "
+    "purposes or personal use as your tier specifies. The self-serve tiers (Starter, Build, "
+    "Startup) are for personal, development and non-commercial use: no commercial products, "
+    "client-facing applications or reports, or production systems such as trading or risk; "
+    "commercial and production use is under an Enterprise agreement. No redistribution, "
+    "resale, sublicensing or third-party access beyond the AI use Terrapin permits; no "
+    "caching beyond the tier's legitimate use; no competing or (on self-serve tiers) "
+    "production derived products; no training models on the data on self-serve tiers; "
+    "credit Terrapin where display is permitted. Pricing: the Startup tier is a monthly "
+    "subscription with monthly quotas of distinct and search ISINs, a year of history and "
+    "a request rate limit; Enterprise is by agreement."
+)
+SOURCES = {
+    "curves": " Its government curves are its own construction from benchmark bonds' "
+    "end-of-day prices.",
+    "inflation": "",
+    "msrb": " Its municipal prints come from MSRB's post-trade feeds, and MSRB's terms "
+    "for its data may apply alongside Terrapin's.",
+}
 
 
 CURVES = DatasetDeclaration(
@@ -58,6 +83,8 @@ CURVES = DatasetDeclaration(
     cadence=DAY,
     history=HISTORY,
     day_time_zone="Etc/UTC",
+    terms_and_pricing=TERMS + SOURCES["curves"],
+    gap_recovery="backfill",
 )
 
 
@@ -69,6 +96,8 @@ INFLATION = DatasetDeclaration(
     cadence=MONTH,
     history=HISTORY,
     day_time_zone="Etc/UTC",
+    terms_and_pricing=TERMS + SOURCES["inflation"],
+    gap_recovery="backfill",
 )
 
 TRADES = DatasetDeclaration(
@@ -79,6 +108,8 @@ TRADES = DatasetDeclaration(
     cadence=3600,
     history=HISTORY,
     day_time_zone="America/New_York",
+    terms_and_pricing=TERMS + SOURCES["msrb"],
+    gap_recovery="backfill",
 )
 
 CATALOGUE = [CURVES, INFLATION, TRADES]
