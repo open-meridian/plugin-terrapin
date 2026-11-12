@@ -3,8 +3,9 @@
 ## Whose terms
 
 The terms under which you use Terrapin's data are between you and Terrapin
-Finance Ltd. This plugin declares no default licence for its datasets; the
-deployment admin sets each dataset's licence on the Data sources page. What
+Finance Ltd. Each dataset describes them in words on the Data sources page;
+the plugin declares no licence: the deployment admin sets each dataset's
+licence there. What
 follows describes Terrapin's published terms in plain words, as read on 30
 October 2026 (terrapinfinance.com/terms, updated 29 October 2026), to help
 you and your agent decide; it is not legal advice, and Terrapin's own text

@@ -18,8 +18,10 @@ def test_three_datasets_and_no_price() -> None:
         assert [ops.ObservationMode.Name(m) for m in dataset.modes] == [
             "OBSERVATION_MODE_PUSH", "OBSERVATION_MODE_PULL",
         ]  # fmt: skip
-        # Terms are the deployment's to settle (rulings 1030 to 1032).
-        assert dataset.licence_default is None
+        # Terms are the deployment's to settle (rulings 1030 to 1032), described
+        # in words (contract 30, ruling 1032); a gap backfilled.
+        assert "Enterprise" in dataset.terms_and_pricing
+        assert len(dataset.terms_and_pricing) <= 2000 and dataset.gap_recovery == "backfill"
         assert "meridian.v1.Price" not in dataset.data_types
     assert [d.day_time_zone for d in catalogue] == [
         "Etc/UTC", "Etc/UTC", "America/New_York",
